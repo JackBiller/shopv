@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
-	<script src="../lib/jquery.payment.js"></script>
-	<!-- <script src="../jquery.payment.min.js"></script> -->
+	<!-- <script src="../lib/jquery.payment.js"></script> -->
+	<script src="../jquery.payment.min.js"></script>
 
 	<style type="text/css" media="screen">
 		.has-error input {
@@ -20,7 +20,6 @@
 			content: 'Validation passed';
 		}
 	</style>
-
 	<script>
 		jQuery(function($) {
 			$('[data-numeric]').payment('restrictNumeric');
@@ -37,8 +36,8 @@
 				e.preventDefault();
 
 				var cardType = $.payment.cardType($('.cc-number').val());
-				$('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
-				$('.cc-exp').toggleInputError($.payment.validateCardExpiry( $('.cc-exp').payment('cardExpiryVal') ));
+				$('.cc-number').toggleInputError(!$.payment.validateCardNumber( $('.cc-number').val().replace(/ /g, '') ));
+				$('.cc-exp').toggleInputError(!$.payment.validateCardExpiry( $('.cc-exp').payment('cardExpiryVal') ));
 				$('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
 				$('.cc-brand').text(cardType); //$('.cc-exp').payment('cardExpiryVal'));
 
@@ -48,7 +47,6 @@
 			});
 		});
 	</script>
-
 </head>
 <body>
 	<div class="container">
